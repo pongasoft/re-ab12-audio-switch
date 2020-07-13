@@ -1,10 +1,9 @@
 #include "JukeboxExports.h"
 #include "Device.h"
+#include <logging/logging.h>
 
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wunused-parameter"
-CommonDevice *createDevice(const TJBox_Value iParams[], TJBox_UInt32 iCount)
+CommonDevice *createDevice([[maybe_unused]] const TJBox_Value iParams[], [[maybe_unused]] TJBox_UInt32 iCount)
 {
+  DLOG_F(INFO, "AB12AudioSwitch - New Instance");
   return new Device();
 }
-#pragma clang diagnostic pop
