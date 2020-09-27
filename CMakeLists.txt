@@ -83,6 +83,8 @@ set(re_sources_2d
     ${RE_2D_SRC_DIR}/Button_Midi_2frames.png
     ${RE_2D_SRC_DIR}/Button_Multi_2frames.png
     ${RE_2D_SRC_DIR}/Button_Single_2frames.png
+    ${RE_2D_SRC_DIR}/Cable_Attachment_Audio_01_1frames.png
+    ${RE_2D_SRC_DIR}/Cable_Attachment_CV_01_1frames.png
     ${RE_2D_SRC_DIR}/Knob_94_63frames.png
     ${RE_2D_SRC_DIR}/Lamp_Bank_CV_13frames.png
     ${RE_2D_SRC_DIR}/Lamp_Bank_CV_5frames.png
@@ -91,13 +93,11 @@ set(re_sources_2d
     ${RE_2D_SRC_DIR}/Panel_Folded_Front.png
     ${RE_2D_SRC_DIR}/Panel_Front.png
     ${RE_2D_SRC_DIR}/Placeholder.png
-    ${RE_2D_SRC_DIR}/SharedAudioJack.png
-    ${RE_2D_SRC_DIR}/SharedCVJack.png
     ${RE_2D_SRC_DIR}/SmallDisplaySurface.png
     ${RE_2D_SRC_DIR}/SwitchCustomDisplay.png
     ${RE_2D_SRC_DIR}/SwitchCustomDisplayBackground.png
-    ${RE_2D_SRC_DIR}/TapeHoriz.png
-    ${RE_2D_SRC_DIR}/TapeVert.png
+    ${RE_2D_SRC_DIR}/Tape_Horizontal_1frames.png
+    ${RE_2D_SRC_DIR}/Tape_Vertical_1frames.png
     ${RE_2D_SRC_DIR}/Toggle_2frames.png
     ${RE_2D_SRC_DIR}/Toggle_Fader_3frames.png
   )

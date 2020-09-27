@@ -91,7 +91,7 @@ front = {
 
   TapeFront = {
     offset = { 52, 147 },
-    { path = "TapeVert" },
+    { path = "Tape_Vertical_1frames" },
   },
   
   -- mode Buttons
@@ -172,7 +172,7 @@ back = {
 
   TapeBack = {
     offset = { 3100, 190 },
-    { path = "TapeHoriz" },
+    { path = "Tape_Horizontal_1frames" },
   },
 
   Placeholder = {
@@ -185,18 +185,18 @@ back = {
     offset = { 2745, 510 },
     audioOutputStereoPairLeft = {
       offset = { 0, 0 },
-      { path = "SharedAudioJack", frames = 3 }
+      { path = "Cable_Attachment_Audio_01_1frames" }
     },
     audioOutputStereoPairRight = {
       offset = audioJackleftRightSpacing,
-      { path = "SharedAudioJack", frames = 3 }
+      { path = "Cable_Attachment_Audio_01_1frames" }
     },
   },
 
   -- cv in state single
   CVInStateSingle = {
     offset = { 2005, 545 },
-    { path = "SharedCVJack", frames = 3 }
+    { path = "Cable_Attachment_CV_01_1frames" }
   },
 
   -- state single keyboard enabled
@@ -208,7 +208,7 @@ back = {
   -- cv in state single
   CVInBank = {
     offset = { 2020, 190},
-    { path = "SharedCVJack", frames = 3 }
+    { path = "Cable_Attachment_CV_01_1frames" }
   },
 
   -- toggle filter on volume change
@@ -232,7 +232,7 @@ folded_front = {
 
   TapeFoldedFront = {
     offset = { 130, 42 },
-    { path = "TapeHoriz" },
+    { path = "Tape_Horizontal_1frames" },
   },
 }
 
@@ -244,19 +244,19 @@ for k, input in pairs(inputs) do
     offset = input.audioJackLeft,
     ["audioInputStereoPairLeft" .. k] = {
       offset = { 0, 0 },
-      { path = "SharedAudioJack", frames = 3 }
+      { path = "Cable_Attachment_Audio_01_1frames" }
     },
     ["audioInputStereoPairRight" .. k] = {
       offset = audioJackRightOffset,
-      { path = "SharedAudioJack", frames = 3 }
+      { path = "Cable_Attachment_Audio_01_1frames" }
     },
     ["CVInGate" .. k] = {
       offset = gateInOffset,
-      { path = "SharedCVJack", frames = 3 }
+      { path = "Cable_Attachment_CV_01_1frames" }
     },
     ["CVOutGate" .. k] = {
       offset = gateOutOffset,
-      { path = "SharedCVJack", frames = 3 }
+      { path = "Cable_Attachment_CV_01_1frames" }
     },
   }
 
@@ -301,7 +301,7 @@ folded_back = {
 
   TapeFoldedBack = {
     offset = { 230, 40 },
-    { path = "TapeHoriz" },
+    { path = "Tape_Horizontal_1frames" },
   },
 
   CableOrigin = {
