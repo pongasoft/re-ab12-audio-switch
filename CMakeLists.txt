@@ -40,7 +40,7 @@ include("${RE_CMAKE_ROOT_DIR}/sdk.cmake")
 
 # Including re-common
 set(RE_COMMON_ROOT_DIR "")
-#set(RE_COMMON_ROOT_DIR "../../pongasoft/re-common")
+#set(RE_COMMON_ROOT_DIR "${CMAKE_CURRENT_LIST_DIR}/../../pongasoft/re-common")
 include(cmake/re-common.cmake)
 
 # Defining where the sources of the plugin live
@@ -71,10 +71,16 @@ set(re_sources_2d
     # Images for the device
     ${RE_2D_SRC_DIR}/BankToggleACustomDisplay.png
     ${RE_2D_SRC_DIR}/BankToggleACustomDisplayBackground.png
+    ${RE_2D_SRC_DIR}/BankToggleAOff.png
+    ${RE_2D_SRC_DIR}/BankToggleAOn.png
     ${RE_2D_SRC_DIR}/BankToggleBCustomDisplay.png
     ${RE_2D_SRC_DIR}/BankToggleBCustomDisplayBackground.png
+    ${RE_2D_SRC_DIR}/BankToggleBOff.png
+    ${RE_2D_SRC_DIR}/BankToggleBOn.png
     ${RE_2D_SRC_DIR}/BankToggleCustomDisplay.png
     ${RE_2D_SRC_DIR}/BankToggleCustomDisplayBackground.png
+    ${RE_2D_SRC_DIR}/BankTogglePressed.png
+    ${RE_2D_SRC_DIR}/BankToggleReleased.png
     ${RE_2D_SRC_DIR}/Button_18_2frames.png
     ${RE_2D_SRC_DIR}/Button_Midi_2frames.png
     ${RE_2D_SRC_DIR}/Button_Multi_2frames.png

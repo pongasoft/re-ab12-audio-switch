@@ -117,9 +117,23 @@ front = {
     BankToggle = {
       offset = { 1800, 270 },
       { path = "BankToggleCustomDisplay" },
-
     }
   },
+
+  {
+    BankToggleReleased = {
+      offset = { 1800, 270 },
+      { path = "BankToggleReleased" },
+    }
+  },
+
+  {
+    BankTogglePressed = {
+      offset = { 1800, 270 },
+      { path = "BankTogglePressed" },
+    }
+  },
+
 
   {
     BankToggleA = {
@@ -129,9 +143,37 @@ front = {
   },
 
   {
+    BankToggleAOff = {
+      offset = { 1660, 300 },
+      { path = "BankToggleAOff" },
+    }
+  },
+
+  {
+    BankToggleAOn = {
+      offset = { 1660, 300 },
+      { path = "BankToggleAOn" },
+    }
+  },
+
+  {
     BankToggleB = {
       offset = { 2010, 300 },
       { path = "BankToggleBCustomDisplay" },
+    }
+  },
+
+  {
+    BankToggleBOff = {
+      offset = { 2010, 300 },
+      { path = "BankToggleBOff" },
+    }
+  },
+
+  {
+    BankToggleBOn = {
+      offset = { 2010, 300 },
+      { path = "BankToggleBOn" },
     }
   },
 

@@ -170,9 +170,18 @@ rtOwnerProperties["prop_bank_cv"] = jbox.number {
   })
 }
 
--- this property is only by the UI/custom display momentary button to draw a button pressed image
+-- this property is no longer used (replaced by prop_bank_toggle_number)
 guiOwnerProperties["prop_bank_toggle"] = jbox.boolean {
   default = false,
+  persistence="none",
+  ui_name = jbox.ui_text("TBD"),
+  ui_type = jbox.ui_selector({jbox.UI_TEXT_OFF, jbox.UI_TEXT_ON})
+}
+
+-- this property is only used by the UI/custom display momentary button to display the right image
+guiOwnerProperties["prop_bank_toggle_number"] = jbox.number {
+  default = 0,
+  steps = 2,
   persistence="none",
   ui_name = jbox.ui_text("TBD"),
   ui_type = jbox.ui_selector({jbox.UI_TEXT_OFF, jbox.UI_TEXT_ON})

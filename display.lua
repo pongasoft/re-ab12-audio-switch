@@ -131,9 +131,6 @@ local bankBToggles = {
   [propBankAB] = propBankA,
 }
 
-local colorBankToggle = { r = 0, g = 0, b = 0, a = 80 }
-local colorBankAB = { r = 0, g = 0, b = 0, a = 200 }
-
 -- handle tap on a switch (singleStateStep represents the step in single mode)
 function handleSwitchTap(props, singleStateStep, input)
   local changes = {}
@@ -246,7 +243,7 @@ BankToggleTap = function(props, di, gi, cd)
     changes[propBankIdx] = propBankA
   end
 
-  changes[propBankToggle] = true
+  changes[propBankToggle] = 1
 
   return { gesture_ui_name = jbox.ui_text("cd BankToggleTap"), property_changes = changes }
 
@@ -258,19 +255,9 @@ BankToggleRelease = function(props, di, gi, cd)
 
   local changes = {}
 
-  changes[propBankToggle] = false
+  changes[propBankToggle] = 0
 
   return { property_changes = changes }
-
-end
-
--- handle bank toggle draw
-BankToggleDraw = function(props, di, dr)
-  -- jbox.trace("BankToggleDraw")
-
-  if props[propBankToggle] then
-    jbox_display.draw_polygon(bankToggleRect, colorBankToggle)
-  end
 
 end
 
@@ -303,29 +290,6 @@ BankToggleTapB = function(props, di, gi, cd)
   return handlBankToggleTapX(props, "B", bankBToggles)
 end
 
--- handle bank toggle draw for A or B
-
-function handleBankToggleDrawX(props, toggle, propOtherBank)
-  -- jbox.trace("BankToggleDraw" .. toggle)
-
-  local propBank = props[propBankIdx]
-  if props[propBankCVIdx] > 0 then
-    propBank = props[propBankCVIdx] - 1
-  end
-
-  -- note that we paint on the opposite to darken the LED background which is lit
-  if propBank == propBankNone or propBank == propOtherBank then
-    jbox_display.draw_rect(bankToggleRectAB, colorBankAB)
-  end
-end
-
--- handle bank toggle draw A
-BankToggleDrawA = function(props, di, dr)
-  handleBankToggleDrawX(props, "A", propBankB)
-end
-
-
--- handle bank toggle draw A
-BankToggleDrawB = function(props, di, dr)
-  handleBankToggleDrawX(props, "B", propBankA)
+-- nothing to do
+NoOpDraw = function(props, di, dr)
 end

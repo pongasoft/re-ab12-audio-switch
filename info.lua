@@ -13,7 +13,7 @@ short_name = "AB12Switch"
 
 product_id = "com.pongasoft.AB12AudioSwitch"
 manufacturer = "pongasoft"
-version_number = "1.2.1f2"
+version_number = "1.2.2d1"
 device_type = "helper"
 supports_patches = false
 accepts_notes = true

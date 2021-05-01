@@ -45,14 +45,28 @@ frontWidgets = {
     background = jbox.image{path = "BankToggleCustomDisplayBackground"},
     display_width_pixels = math.floor(160 / 5),
     display_height_pixels = math.floor(145 / 5),
-    draw_function = "BankToggleDraw",
+    draw_function = "NoOpDraw",
     gesture_function ="BankToggleGesture",
     values = {
       "/custom_properties/prop_bank",
       "/custom_properties/prop_bank_cv",
       "/custom_properties/prop_bank_override_cv",
-      "/custom_properties/prop_bank_toggle"
+      "/custom_properties/prop_bank_toggle_number"
     },
+  },
+
+  jbox.static_decoration{
+    graphics = { node = "BankToggleReleased" },
+    blend_mode = "normal",
+    visibility_switch = "/custom_properties/prop_bank_toggle_number",
+    visibility_values = { 0 }
+  },
+
+  jbox.static_decoration{
+    graphics = { node = "BankTogglePressed" },
+    blend_mode = "normal",
+    visibility_switch = "/custom_properties/prop_bank_toggle_number",
+    visibility_values = { 1 }
   },
 
   jbox.custom_display{
@@ -62,13 +76,27 @@ frontWidgets = {
     background = jbox.image{path = "BankToggleACustomDisplayBackground"},
     display_width_pixels = math.floor(100 / 5),
     display_height_pixels = math.floor(90 / 5),
-    draw_function = "BankToggleDrawA",
+    draw_function = "NoOpDraw",
     gesture_function ="BankToggleGestureA",
     values = {
       "/custom_properties/prop_bank",
       "/custom_properties/prop_bank_cv",
       "/custom_properties/prop_bank_override_cv",
     },
+  },
+
+  jbox.static_decoration{
+    graphics = { node = "BankToggleAOff" },
+    blend_mode = "normal",
+    visibility_switch = "/custom_properties/prop_bank",
+    visibility_values = { 0, 2 }
+  },
+
+  jbox.static_decoration{
+    graphics = { node = "BankToggleAOn" },
+    blend_mode = "normal",
+    visibility_switch = "/custom_properties/prop_bank",
+    visibility_values = { 1, 3 }
   },
 
   jbox.custom_display{
@@ -78,7 +106,7 @@ frontWidgets = {
     background = jbox.image{path = "BankToggleBCustomDisplayBackground"},
     display_width_pixels = math.floor(100 / 5),
     display_height_pixels = math.floor(90 / 5),
-    draw_function = "BankToggleDrawB",
+    draw_function = "NoOpDraw",
     gesture_function ="BankToggleGestureB",
     values = {
       "/custom_properties/prop_bank",
@@ -86,6 +114,23 @@ frontWidgets = {
       "/custom_properties/prop_bank_override_cv",
     },
   },
+
+    -- 0 = none, 1 = A, 2 = B, 3 = A+B
+
+  jbox.static_decoration{
+    graphics = { node = "BankToggleBOff" },
+    blend_mode = "normal",
+    visibility_switch = "/custom_properties/prop_bank",
+    visibility_values = { 0, 1 }
+  },
+
+  jbox.static_decoration{
+    graphics = { node = "BankToggleBOn" },
+    blend_mode = "normal",
+    visibility_switch = "/custom_properties/prop_bank",
+    visibility_values = { 2, 3 }
+  },
+
 
   -- prop_soften
   jbox.toggle_button {
