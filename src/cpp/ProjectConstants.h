@@ -4,9 +4,6 @@
 
 #include "Constants.h"
 
-#define STR(s) #s
-#define CONCAT(s1, s2) s1 s2
-
 enum ESwitchedInput {
   kNone = 0,
   kA1 = 1,

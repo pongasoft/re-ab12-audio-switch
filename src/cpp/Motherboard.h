@@ -29,24 +29,32 @@ const TJBox_Tag PROP_NOTE_STATE_START_TAG = 60;
 class SwitchedInput
 {
 public:
-  SwitchedInput(
-    char const *iAudioInputLeft,
-    char const *iAudioInputRight,
-    char const *iCVInGate,
-    char const *iCVOutGate,
-    char const *iStateMulti,
-    char const *iStateMidi,
-    char const *iVolume
-  ):
-    fAudioInput(iAudioInputLeft, iAudioInputRight),
-    fCVInGate(iCVInGate),
-    fCVOutGate(iCVOutGate),
-    fPropStateMulti(iStateMulti),
-    fPropStateMidi(iStateMidi),
-    fPropVolume(iVolume)
-  {}
+  explicit SwitchedInput(ESwitchedInput iId) :
+    fId{iId},
+    fBank{bank(iId)},
+    fName{StaticString<2>::printf("%s%d", fBank == kBankA ? "A" : "B", number(fId))},
+    fAudioInput(jbox::PropertyName::printf("audioInputLeft%s", fName), jbox::PropertyName::printf("audioInputRight%s", fName)),
+    fCVInGate(jbox::PropertyName::printf("cv_in_gate_%s", fName)),
+    fCVOutGate(jbox::PropertyName::printf("cv_out_gate_%s", fName)),
+    fPropStateMulti(jbox::PropertyPath::printf("/custom_properties/prop_state_multi_%s", fName)),
+    fPropStateMidi(jbox::PropertyPath::printf("/custom_properties/prop_state_midi_%s", fName)),
+    fPropVolume(jbox::PropertyPath::printf("/custom_properties/prop_volume_%s", fName))
+  {
+    DCHECK_F(fId >= kA1 && fId <= kB6);
+  }
 
   SwitchedInput(SwitchedInput const &other) = delete;
+
+  SwitchedInput &operator=(const SwitchedInput &iOther) {
+    fAudioInput = iOther.fAudioInput;
+    fCVInGate = iOther.fCVInGate;
+    fCVOutGate = iOther.fCVOutGate;
+    fPropStateMulti = iOther.fPropStateMulti;
+    fPropStateMidi = iOther.fPropStateMidi;
+    fPropVolume = iOther.fPropVolume;
+    return *this;
+  }
+
 
   void registerForUpdate(JBoxPropertyManager &manager, ESwitchedInput idx)
   {
@@ -58,7 +66,21 @@ public:
     fPropVolume.registerForUpdate(manager, PROP_VOLUME_START_TAG + idx - kA1);
   }
 
+
+  static constexpr ESwitchBank bank(ESwitchedInput iInput) {
+    DCHECK_F(iInput >= kA1 && iInput <= kB6);
+    return iInput < kB1 ? kBankA : kBankB;
+  }
+
+  static constexpr int number(ESwitchedInput iInput) {
+    DCHECK_F(iInput >= kA1 && iInput <= kB6);
+    return static_cast<int>(iInput) - (iInput < kB1 ? 0 : 6);
+  }
+
 public:
+  const ESwitchedInput fId;
+  const ESwitchBank fBank;
+  const StaticString<2> fName;
   StereoInPair fAudioInput;
   CVInSocket fCVInGate;
   CVOutSocket fCVOutGate;

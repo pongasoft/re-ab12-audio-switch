@@ -13,13 +13,7 @@
 class SwitchedInputState
 {
 public:
-  SwitchedInputState(ESwitchedInput iId,
-                     ESwitchBank iBank,
-                     char const *iName,
-                     SwitchedInput *iSwitchedInput):
-    fId(iId),
-    fBank(iBank),
-    fName(iName),
+  explicit SwitchedInputState(SwitchedInput *iSwitchedInput):
     fSwitchedInput(iSwitchedInput),
     fNoteCount(0),
     fVolume(1.0, true)
@@ -35,9 +29,9 @@ public:
   inline bool isNoteSelected() const { return fNoteCount > 0; }
   inline bool isMidiSelected() const { return isNoteSelected() || isCVSelected(); }
   inline bool isConnected() const { return fSwitchedInput->fAudioInput.isConnected(); }
-  inline char const *getName() const { return fName; }
-  inline ESwitchedInput getId() const { return fId; }
-  inline ESwitchBank getBank() const { return fBank; }
+  inline char const *getName() const { return fSwitchedInput->fName; }
+  inline ESwitchedInput getId() const { return fSwitchedInput->fId; }
+  inline ESwitchBank getBank() const { return fSwitchedInput->fBank; }
   inline void readAudio(StereoAudioBuffer &iStereoAudioBuffer) const {
     fSwitchedInput->fAudioInput.readAudio(iStereoAudioBuffer);
     iStereoAudioBuffer.adjustGain(fVolume.getVolume());
@@ -78,9 +72,6 @@ public:
   }
 
 private:
-  const ESwitchedInput fId;
-  const ESwitchBank fBank;
-  char const *fName;
   SwitchedInput * const fSwitchedInput;
 
   // count how many midi inputs we are getting for this switch (multiple notes (1 octave apart) can be held at the same

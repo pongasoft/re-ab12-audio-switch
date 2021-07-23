@@ -4,26 +4,12 @@
 
 #include "DeviceState.h"
 
-#define NEW_SWITCH(b, i) fSwitchedInputStates[k ## b ## i] = \
-  new SwitchedInputState(k ## b ## i, \
-                         kBank ## b, \
-                         CONCAT(STR(b), STR(i)), \
-                         fMotherboard.fSwitchedInputs[k ## b ## i])
-
 DeviceState::DeviceState() : fSingleStateKeySwitch(kNone)
 {
-  NEW_SWITCH(A, 1);
-  NEW_SWITCH(A, 2);
-  NEW_SWITCH(A, 3);
-  NEW_SWITCH(A, 4);
-  NEW_SWITCH(A, 5);
-  NEW_SWITCH(A, 6);
-  NEW_SWITCH(B, 1);
-  NEW_SWITCH(B, 2);
-  NEW_SWITCH(B, 3);
-  NEW_SWITCH(B, 4);
-  NEW_SWITCH(B, 5);
-  NEW_SWITCH(B, 6);
+  for (int i = static_cast<int>(kA1); i < static_cast<int>(kEnd); ++i)
+  {
+    fSwitchedInputStates[i] = new SwitchedInputState(fMotherboard.fSwitchedInputs[i]);
+  }
 
   for (int i = static_cast<int>(kA1); i < static_cast<int>(kEnd); ++i)
   {

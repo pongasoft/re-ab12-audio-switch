@@ -4,19 +4,10 @@
 
 #include "Motherboard.h"
 
-#define NEW_SWITCH(s) fSwitchedInputs[k ## s] = \
-  new SwitchedInput(CONCAT("/audio_inputs/audioInputLeft", STR(s)), CONCAT("/audio_inputs/audioInputRight", STR(s)), \
-                    CONCAT("/cv_inputs/cv_in_gate_", STR(s)), \
-                    CONCAT("/cv_outputs/cv_out_gate_", STR(s)), \
-                    CONCAT("/custom_properties/prop_state_multi_", STR(s)), \
-                    CONCAT("/custom_properties/prop_state_midi_", STR(s)), \
-                    CONCAT("/custom_properties/prop_volume_", STR(s)) \
-                   )
-
 Motherboard::Motherboard():
-    fAudioOutput("/audio_outputs/audioOutputLeft", "/audio_outputs/audioOutputRight"),
-    fCVInStateSingle("/cv_inputs/cv_in_state_single"),
-    fCVInBank("/cv_inputs/cv_in_bank"),
+    fAudioOutput("audioOutputLeft", "audioOutputRight"),
+    fCVInStateSingle("cv_in_state_single"),
+    fCVInBank("cv_in_bank"),
     fNoteStates(),
     fPropMode("/custom_properties/prop_mode"),
     fPropStateSingle("/custom_properties/prop_state_single"),
@@ -30,18 +21,11 @@ Motherboard::Motherboard():
     fPropBankCV("/custom_properties/prop_bank_cv"),
     fPropBankCVMapping("/custom_properties/prop_bank_cv_mapping")
 {
-  NEW_SWITCH(A1);
-  NEW_SWITCH(A2);
-  NEW_SWITCH(A3);
-  NEW_SWITCH(A4);
-  NEW_SWITCH(A5);
-  NEW_SWITCH(A6);
-  NEW_SWITCH(B1);
-  NEW_SWITCH(B2);
-  NEW_SWITCH(B3);
-  NEW_SWITCH(B4);
-  NEW_SWITCH(B5);
-  NEW_SWITCH(B6);
+  // Implementation note: dynamic allocation is automatically freed when the RE is removed
+  // => no destructor is ok
+  for(int i = static_cast<int>(kA1); i < static_cast<int>(kEnd); i++) {
+    fSwitchedInputs[i] = new SwitchedInput(static_cast<ESwitchedInput>(i));
+  }
 }
 
 void Motherboard::update(Motherboard const &rhs)
