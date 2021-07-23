@@ -43,6 +43,11 @@ set(RE_COMMON_ROOT_DIR "")
 #set(RE_COMMON_ROOT_DIR "${CMAKE_CURRENT_LIST_DIR}/../../pongasoft/re-common")
 include(cmake/re-common.cmake)
 
+# Including re-mock
+set(RE_MOCK_ROOT_DIR "")
+set(RE_MOCK_ROOT_DIR "${CMAKE_CURRENT_LIST_DIR}/../../pongasoft/re-mock")
+include(cmake/re-mock.cmake)
+
 # Defining where the sources of the plugin live
 set(RE_CPP_SRC_DIR "${CMAKE_CURRENT_LIST_DIR}/src/cpp")
 
@@ -104,15 +109,27 @@ set(re_sources_2d
     ${RE_2D_SRC_DIR}/Toggle_Fader_3frames.png
   )
 
+# Location of the test cases
+set(TEST_DIR "${CMAKE_CURRENT_LIST_DIR}/test/cpp")
+
+# List of test cases
+set(re_test_cpp
+    "${TEST_DIR}/test-Device.cpp"
+    )
+
 # Adding the RE plugin
 add_re_plugin(
-    RE_SDK_VERSION ${RE_SDK_VERSION}
-    RE_SDK_ROOT ${RE_SDK_ROOT}
-    RE_2D_RENDER_ROOT ${RE_2D_RENDER_ROOT}
-    BUILD_SOURCES ${re_sources_cpp} ${re-common_BUILD_SOURCES}
-    NATIVE_BUILD_SOURCES ${re-common_NATIVE_BUILD_SOURCES}
-    RENDER_2D_SOURCES ${re_sources_2d}
+    RE_SDK_VERSION       "${RE_SDK_VERSION}"
+    RE_SDK_ROOT          "${RE_SDK_ROOT}"
+    RE_2D_RENDER_ROOT    "${RE_2D_RENDER_ROOT}"
+    BUILD_SOURCES        "${re_sources_cpp}" "${re-common_BUILD_SOURCES}"
+    NATIVE_BUILD_SOURCES "${re-common_NATIVE_BUILD_SOURCES}"
     INCLUDE_DIRECTORIES ${re-common_INCLUDE_DIRECTORIES}
-    COMPILE_OPTIONS -Wall
-    ENABLE_DEBUG_LOGGING # turn on JBOX_TRACE and loguru
+    RENDER_2D_SOURCES    "${re_sources_2d}"
+    COMPILE_OPTIONS      -Wall
+    ENABLE_DEBUG_LOGGING                                    # turn on JBOX_TRACE and loguru
+    # Testing
+    TEST_CASE_SOURCES        "${re_test_cpp}"     # the source files containing the test cases
+    TEST_INCLUDE_DIRECTORIES "${RE_CPP_SRC_DIR}"  # tests can include plugin classes
+    TEST_LINK_LIBS           "native-test-lib" "re-mock"   # tests can link plugin classes
 )

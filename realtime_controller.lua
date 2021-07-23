@@ -2,12 +2,12 @@ format_version = "1.0"
 
 rtc_bindings = {
   -- this will initialize the C++ object
-  { source = "/environment/instance_id", dest = "/global_rtc/init_instance" },
+  { source = "/environment/system_sample_rate", dest = "/global_rtc/init_instance" },
 }
 
 global_rtc = {
-  init_instance = function(source_property_path, instance_id)
-    local new_no = jbox.make_native_object_rw("Instance", { instance_id })
+  init_instance = function(source_property_path, new_value)
+    local new_no = jbox.make_native_object_rw("Instance", { new_value })
     jbox.store_property("/custom_properties/instance", new_no);
   end,
 }

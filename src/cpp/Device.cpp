@@ -4,7 +4,7 @@
 #include <iostream>
 #endif // !__phdsp__
 
-Device::Device(): CommonDevice(), fFirstBatch(true)
+Device::Device(int iSampleRate): CommonDevice(), fSampleRate{iSampleRate}, fFirstBatch(true)
 {
   JBOX_TRACE("Device()");
 
