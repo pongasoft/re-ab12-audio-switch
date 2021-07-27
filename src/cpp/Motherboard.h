@@ -32,7 +32,7 @@ public:
   explicit SwitchedInput(ESwitchedInput iId) :
     fId{iId},
     fBank{bank(iId)},
-    fName{StaticString<2>::printf("%s%d", fBank == kBankA ? "A" : "B", number(fId))},
+    fName{StaticString<3>::printf("%s%d", fBank == kBankA ? "A" : "B", number(fId))},
     fAudioInput(jbox::PropertyName::printf("audioInputLeft%s", fName), jbox::PropertyName::printf("audioInputRight%s", fName)),
     fCVInGate(jbox::PropertyName::printf("cv_in_gate_%s", fName)),
     fCVOutGate(jbox::PropertyName::printf("cv_out_gate_%s", fName)),
@@ -80,7 +80,7 @@ public:
 public:
   const ESwitchedInput fId;
   const ESwitchBank fBank;
-  const StaticString<2> fName;
+  const StaticString<3> fName;
   StereoInPair fAudioInput;
   CVInSocket fCVInGate;
   CVOutSocket fCVOutGate;

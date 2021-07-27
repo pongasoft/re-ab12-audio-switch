@@ -19,18 +19,13 @@
 #include <gtest/gtest.h>
 #include <Device.h>
 #include <re/mock/Rack.h>
-#include <re/mock/MockDevices.h>
+#include <re_cmake_build.h>
 
 using namespace re::mock;
 
 auto newAB12Switch(Rack &iRack)
 {
-  Config c = Config::byDefault<Device>([](LuaJbox &jbox, MotherboardDef &def, RealtimeController &rtc, Realtime &rt) {
-    // rt
-    rt.create_native_object = JBox_Export_CreateNativeObject; // use actual function for test
-    rt.render_realtime = JBox_Export_RenderRealtime;          // use actual function for test
-  });
-
+  auto c = DeviceConfig<Device>::fromJBoxExport(RE_CMAKE_MOTHERBOARD_DEF_LUA, RE_CMAKE_REALTIME_CONTROLLER_LUA);
   return iRack.newDevice<Device>(c);
 }
 
