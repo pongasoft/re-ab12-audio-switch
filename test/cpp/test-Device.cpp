@@ -18,24 +18,21 @@
 
 #include <gtest/gtest.h>
 #include <Device.h>
-#include <re/mock/Rack.h>
+#include <re/mock/DeviceTesters.h>
 #include <re_cmake_build.h>
 
 using namespace re::mock;
 
-auto newAB12Switch(Rack &iRack)
+auto newAB12SwitchTester()
 {
   auto c = DeviceConfig<Device>::fromJBoxExport(RE_CMAKE_MOTHERBOARD_DEF_LUA, RE_CMAKE_REALTIME_CONTROLLER_LUA);
-  return iRack.newDevice<Device>(c);
+  return HelperTester<Device>(c);
 }
 
 // Device - SampleRate
 TEST(Device, SampleRate)
 {
-  Rack rack{};
+  auto tester = newAB12SwitchTester();
 
-  // this tests the creation of the device
-  auto abSwitch = newAB12Switch(rack);
-
-  ASSERT_EQ(44100, abSwitch->getSampleRate());
+  ASSERT_EQ(44100, tester.device()->getSampleRate());
 }

@@ -45,7 +45,7 @@ include(cmake/re-common.cmake)
 
 # Including re-mock
 set(RE_MOCK_ROOT_DIR "")
-set(RE_MOCK_ROOT_DIR "${CMAKE_CURRENT_LIST_DIR}/../../pongasoft/re-mock")
+#set(RE_MOCK_ROOT_DIR "${CMAKE_CURRENT_LIST_DIR}/../../pongasoft/re-mock")
 include(cmake/re-mock.cmake)
 
 # Defining where the sources of the plugin live
