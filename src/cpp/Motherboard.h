@@ -93,6 +93,7 @@ class Motherboard
 {
 public:
   Motherboard();
+  ~Motherboard();
 
   void registerForUpdate(JBoxPropertyManager &manager);
   void update(Motherboard const &rhs);

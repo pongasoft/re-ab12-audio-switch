@@ -21,11 +21,17 @@ Motherboard::Motherboard():
     fPropBankCV("/custom_properties/prop_bank_cv"),
     fPropBankCVMapping("/custom_properties/prop_bank_cv_mapping")
 {
-  // Implementation note: dynamic allocation is automatically freed when the RE is removed
-  // => no destructor is ok
   for(int i = static_cast<int>(kA1); i < static_cast<int>(kEnd); i++) {
     fSwitchedInputs[i] = new SwitchedInput(static_cast<ESwitchedInput>(i));
   }
+}
+
+Motherboard::~Motherboard()
+{
+  // Implementation note: dynamic allocation is automatically freed when the RE is removed
+  // => destructor only called when unit testing
+  for(int i = static_cast<int>(kA1); i < static_cast<int>(kEnd); i++)
+    delete fSwitchedInputs[i];
 }
 
 void Motherboard::update(Motherboard const &rhs)
@@ -77,3 +83,4 @@ void Motherboard::registerForUpdate(JBoxPropertyManager &manager)
     fSwitchedInputs[i]->registerForUpdate(manager, static_cast<ESwitchedInput>(i));
   }
 }
+
