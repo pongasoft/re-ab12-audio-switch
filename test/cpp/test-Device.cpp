@@ -35,4 +35,6 @@ TEST(Device, SampleRate)
   auto tester = newAB12SwitchTester();
 
   ASSERT_EQ(44100, tester.device()->getSampleRate());
+
+  tester.nextFrame();
 }

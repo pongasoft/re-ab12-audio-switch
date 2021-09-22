@@ -26,7 +26,7 @@ else()
 endif()
 
 set(RE_MOCK_GIT_REPO "https://github.com/pongasoft/re-mock" CACHE STRING "re-mock git repository url")
-set(RE_MOCK_GIT_TAG "v0.9.1" CACHE STRING "re-mock git tag")
+set(RE_MOCK_GIT_TAG "v0.9.2" CACHE STRING "re-mock git tag")
 
 FetchContent_Declare(re-mock
       GIT_REPOSITORY    ${RE_MOCK_GIT_REPO}
