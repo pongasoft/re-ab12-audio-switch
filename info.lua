@@ -3,17 +3,17 @@ format_version = "1.0"
 -- Note that changing this file requires a Reason/Recon restart
 
 -- Max 40 chars
-long_name = "A/B 12 Stereo Audio Inputs Switch"
+long_name = "A/B 12 Audio In Switch"
 
 -- Max 20 chars
-medium_name = "A/B 12 Audio Switch"
+medium_name = "A/B 12 Audio In"
 
 -- Max 10 chars
-short_name = "AB12Switch"
+short_name = "AB12AudIn"
 
 product_id = "com.pongasoft.AB12AudioSwitch"
 manufacturer = "pongasoft"
-version_number = "1.2.2d1"
+version_number = "1.3.0d1"
 device_type = "helper"
 supports_patches = false
 accepts_notes = true

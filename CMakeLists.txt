@@ -30,7 +30,7 @@ include(cmake/fetch_re-cmake.cmake)
 include("${RE_CMAKE_ROOT_DIR}/cmake/RECMakeOptions.cmake")
 
 # Setting up project (note that the version is defined in lua.info)
-project(re-ab12-audio-switch LANGUAGES CXX)
+project(re-ab12-audio-in-switch LANGUAGES CXX)
 
 # Using C++17
 set(CMAKE_CXX_STANDARD 17)

@@ -33,17 +33,15 @@ local foldedFrontA1 = { 600, 30 }
 local foldedFrontB1 = { 2270, 30 }
 local foldedFrontSpacing = 160
 
-local audioJackA1 = { 275, 150 }
-local audioJackRightOffset = computeOffset(audioJackA1, {275, 265})
-local gateInOffset = computeOffset(audioJackA1, {280, 400})
-local gateOutOffset = computeOffset(audioJackA1, {280, 505})
+local audioJackA1 = { 430, 150 }
+local audioJackRightOffset = computeOffset(audioJackA1, {430, 265})
+local gateInOffset = computeOffset(audioJackA1, {440, 400})
+local gateOutOffset = computeOffset(audioJackA1, {440, 505})
 
-local audioJackB1 = { 1180, 150 }
+local audioJackB1 = { 1135, 150 }
 
 -- audio jacks
-local inputSpacingX = computeOffset( audioJackA1, {390,150})[1]
-
-local audioJackleftRightSpacing = { 100, 0 }
+local inputSpacingX = computeOffset( audioJackA1, {545,150})[1]
 
 local inputs = {
   A1 = { f = { c = 1, r = 1, o = "left"}, b = {c = 1, r = 1 }, ff = 0 },
@@ -93,7 +91,7 @@ front = {
     offset = { 52, 147 },
     { path = "Tape_Vertical_1frames" },
   },
-  
+
   -- mode Buttons
   {
     ModeSingleButton = {
@@ -213,7 +211,7 @@ back = {
   },
 
   TapeBack = {
-    offset = { 3100, 190 },
+    offset = { 3080, 240 },
     { path = "Tape_Horizontal_1frames" },
   },
 
@@ -224,13 +222,13 @@ back = {
 
   -- main audio out
   {
-    offset = { 2745, 510 },
+    offset = { 1980, 150 },
     audioOutputStereoPairLeft = {
       offset = { 0, 0 },
       { path = "Cable_Attachment_Audio_01_1frames" }
     },
     audioOutputStereoPairRight = {
-      offset = audioJackleftRightSpacing,
+      offset = audioJackRightOffset,
       { path = "Cable_Attachment_Audio_01_1frames" }
     },
   },
@@ -249,7 +247,7 @@ back = {
 
   -- cv in state single
   CVInBank = {
-    offset = { 2020, 190},
+    offset = { 2550, 525},
     { path = "Cable_Attachment_CV_01_1frames" }
   },
 
@@ -261,7 +259,7 @@ back = {
 
   -- toggle bank cv mapping
   BankCV = {
-    offset = { 2132, 143},
+    offset = { 2665, 480},
     { path = "Toggle_Fader_3frames", frames = 3 }
   },
 }
