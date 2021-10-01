@@ -101,7 +101,7 @@ set(re_sources_2d
     ${RE_2D_SRC_DIR}/Panel_Front.png
     ${RE_2D_SRC_DIR}/Placeholder.png
     ${RE_2D_SRC_DIR}/SmallDisplaySurface.png
-    ${RE_2D_SRC_DIR}/SwitchCustomDisplay.png
+    ${RE_2D_SRC_DIR}/SwitchCustomDisplayBackground-HD.png
     ${RE_2D_SRC_DIR}/SwitchCustomDisplayBackground.png
     ${RE_2D_SRC_DIR}/Tape_Horizontal_1frames.png
     ${RE_2D_SRC_DIR}/Tape_Vertical_1frames.png

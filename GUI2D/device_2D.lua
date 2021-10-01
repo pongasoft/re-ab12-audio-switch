@@ -312,7 +312,7 @@ for k, input in pairs(inputs) do
   front[#front + 1] = {
     ["Switch" .. k] = {
       offset = input.switch,
-      { path = "SwitchCustomDisplay" },
+      { path = "SwitchCustomDisplayBackground-HD" },
     },
   }
 
@@ -328,7 +328,7 @@ for k, input in pairs(inputs) do
   folded_front[#folded_front + 1] = {
     ["SwitchFolded" .. k] = {
       offset = input.switchFF,
-      { path = "SwitchCustomDisplay" },
+      { path = "SwitchCustomDisplayBackground-HD" },
     }
   }
 end
