@@ -13,7 +13,7 @@ short_name = "AB12AudIn"
 
 product_id = "com.pongasoft.AB12AudioSwitch"
 manufacturer = "pongasoft"
-version_number = "1.3.0d1"
+version_number = "1.3.0f1"
 device_type = "helper"
 supports_patches = false
 accepts_notes = true

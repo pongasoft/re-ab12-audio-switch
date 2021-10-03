@@ -87,6 +87,12 @@ Release notes
 * Upgraded to use [re-cmake](https://github.com/pongasoft/re-cmake) (removed all unnecessary files  and added CMake build files) 
 * Builds properly on Apple chipset
 
+#### 1.3.0 - 2021/10/03
+
+* Hi resolution tweaks
+* Minor UI redesign (back)
+* Requires Reason 10.1+
+
 #### 1.2.1 - 2016/10/20
 
 * Fixed issue with Gate In.
