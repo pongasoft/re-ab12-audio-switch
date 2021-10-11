@@ -1,0 +1,72 @@
+***************
+Logo:
+***************
+/Volumes/Development/local/pongasoft-www/images/re/AB12AudioInSwitch/Icon_800x800.png
+
+Top Feature 1: Switch 12 audio inputs
+Top Feature 2: 3 control modes
+Top Feature 3: Midi switching for live performance
+
+***************
+Summary:
+***************
+
+**A/B Test your audio!**
+
+The pongasoft A/B 12 Audio In Switch is a 2U **FREE** utility that lets you switch between 12 audio stereo inputs using various approaches.
+
+**3 control modes for the 12 inputs**
+
+- in single mode, only one input is active at a time and you can switch to another with a single click (or key on your keyboard). Perfect for A/B testing!
+- in multiple mode, any combination of inputs can be active at a time (similar to the Solo concept).
+- in instrument mode, you control the switch as if you were playing an instrument. Perfect for quickly coming up with creative ideas or live performance.
+
+**External control**
+
+- 12 Gate In inputs lets you control the switch from another device
+- 12 Gate Out outputs lets you control other devices from the switch (ex: a Kong device).
+
+**A/B bank switching**
+
+The switch is split into 2 banks of inputs which can be independently turned on or off. A convenient control also lets you instantly toggle between the 2 banks, effectively implementing another level of switching.
+
+**Miscellaneous features**
+
+- Each switch can be labeled independently.
+- Each switch has its own volume control.
+- A soften toggle helps in eliminating clicks and pops that can occur during switching.
+
+Although designed as a utility, the switch can be used very creatively as well!
+
+***************
+Product Details
+***************
+
+
+**Usage**
+
+Check the [documentation](http://pongasoft.com/rack-extensions/AB12Switch.html "documentation") for instructions about how to use the switch.
+
+**Example of usage**
+
+- Have multiple versions of an audio you want to compare (ex: different mastering)? Simply connect them to A1, A2, etc... and use Single mode to instantly switch between the different versions.
+
+- Want to gate your sound(s)? Connect only one bank, leave the other one empty and use the CV Bank input connected to a Matrix to switch between A & B (sound / no sound => gate effect).
+
+- Looking for inspiration? Connect any number of loops (DrRex, Audio tracks, etc...) to the switch and use Instrument mode to "play" portions of a loop with your hardware keyboard. This would be equivalent to muting portions of a waveform, except it is way easier to do and dynamic: no need to edit the sequencer track.
+
+- Easily toggle between various samples in a live environment using the Single mode keyboard switching capability.
+
+**Release Notes**
+
+- 1 3.0 - 2021/10/07: Support Hi Resolution graphics (Reason 12). Updated design. Requires Reason 10.1+.
+
+- 1.2.1 - 2017/01/20: Bug fix
+
+- 1.2.0 - 2016/10/21: Added keyboard support in Single mode
+
+- 1.1.0 - 2015/08/17: Expanded keyboard control in Instr. to all octaves; Added 12 Gate In CV inputs; Added 12 Gate Out CV outputs; Changed design of the back to accommodate 24 new sockets
+
+- 1.0.1 - 2015/07/13: Fixed minor bugs
+
+- 1.0.0 - 2015/07/06: First release
