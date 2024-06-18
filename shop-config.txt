@@ -3,6 +3,8 @@ Logo:
 ***************
 /Volumes/Development/local/pongasoft-www/images/re/AB12AudioInSwitch/Icon_800x800.png
 
+Long title: 12 Inputs / 1 Output
+
 Top Feature 1: Switch 12 audio inputs
 Top Feature 2: 3 control modes
 Top Feature 3: Midi switching for live performance

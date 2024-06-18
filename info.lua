@@ -15,6 +15,7 @@ product_id = "com.pongasoft.AB12AudioSwitch"
 manufacturer = "pongasoft"
 version_number = "1.3.0f1"
 device_type = "helper"
+device_categories = {"Misc"}
 supports_patches = false
 accepts_notes = true
 auto_create_track = true
