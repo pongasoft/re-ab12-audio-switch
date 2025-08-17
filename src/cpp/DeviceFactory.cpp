@@ -1,6 +1,6 @@
 #include "JukeboxExports.h"
 #include "Device.h"
-#include <logging/logging.h>
+#include <logging.h>
 
 CommonDevice *createDevice([[maybe_unused]] const TJBox_Value iParams[], [[maybe_unused]] TJBox_UInt32 iCount)
 {

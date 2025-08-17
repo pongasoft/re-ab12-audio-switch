@@ -16,18 +16,17 @@
 
 cmake_minimum_required(VERSION 3.13)
 
+# Capturing root of project
+set(RE_PROJECT_ROOT_DIR "${CMAKE_CURRENT_LIST_DIR}")
+
+# No HD custom display
+set(RE_CMAKE_RE_2D_RENDER_HI_RES_OPTION "hi-res" CACHE STRING "Option for invoking RE2DRender for hi res build (hi-res or hi-res-only)")
+
 # Using RE SDK version 4.2.0
-set(RE_SDK_VERSION 4.2.0)
+set(RE_SDK_VERSION 4.6.0)
 
-set(RE_CMAKE_ROOT_DIR "")
-#set(RE_CMAKE_ROOT_DIR "${CMAKE_CURRENT_LIST_DIR}/../../pongasoft/re-cmake")
-
-# If RE_CMAKE_ROOT_DIR is undefined/empty, it will fetch/download it from github
-# If RE_CMAKE_ROOT_DIR is defined, it should point to the (local) folder where re-cmake is located
-include(cmake/fetch_re-cmake.cmake)
-
-# Default options provided by re-cmake
-include("${RE_CMAKE_ROOT_DIR}/cmake/RECMakeOptions.cmake")
+include(cmake/options.cmake)  # (optional) override versions used
+include(cmake/re-cmake.cmake) # include re-cmake (BEFORE project() definition)
 
 # Setting up project (note that the version is defined in lua.info)
 project(re-ab12-audio-in-switch LANGUAGES CXX)
@@ -35,18 +34,12 @@ project(re-ab12-audio-in-switch LANGUAGES CXX)
 # Using C++17
 set(CMAKE_CXX_STANDARD 17)
 
-# we include the framework itself
-include("${RE_CMAKE_ROOT_DIR}/sdk.cmake")
+# Initializes re-cmake (re-mock for unit testing)
+re_cmake_init(INCLUDES re-logging re-mock)
 
-# Including re-common
-set(RE_COMMON_ROOT_DIR "")
-#set(RE_COMMON_ROOT_DIR "${CMAKE_CURRENT_LIST_DIR}/../../pongasoft/re-common")
-include(cmake/re-common.cmake)
-
-# Including re-mock
-set(RE_MOCK_ROOT_DIR "")
-#set(RE_MOCK_ROOT_DIR "${CMAKE_CURRENT_LIST_DIR}/../../pongasoft/re-mock")
-include(cmake/re-mock.cmake)
+# re-common
+fetch_content(NAME re-common)
+include("${re-common_ROOT_DIR}/re-common.cmake")
 
 # Defining where the sources of the plugin live
 set(RE_CPP_SRC_DIR "${CMAKE_CURRENT_LIST_DIR}/src/cpp")
@@ -119,17 +112,20 @@ set(re_test_cpp
 
 # Adding the RE plugin
 add_re_plugin(
-    RE_SDK_VERSION       "${RE_SDK_VERSION}"
-    RE_SDK_ROOT          "${RE_SDK_ROOT}"
-    RE_2D_RENDER_ROOT    "${RE_2D_RENDER_ROOT}"
-    BUILD_SOURCES        "${re_sources_cpp}" "${re-common_BUILD_SOURCES}"
-    NATIVE_BUILD_SOURCES "${re-common_NATIVE_BUILD_SOURCES}"
-    INCLUDE_DIRECTORIES ${re-common_INCLUDE_DIRECTORIES}
-    RENDER_2D_SOURCES    "${re_sources_2d}"
-    COMPILE_OPTIONS      -Wall
-    ENABLE_DEBUG_LOGGING                                    # turn on JBOX_TRACE and loguru
+    RE_SDK_VERSION         "${RE_SDK_VERSION}"
+    RE_SDK_ROOT            "${RE_SDK_ROOT}"
+    RE_2D_RENDER_ROOT      "${RE_2D_RENDER_ROOT}"
+    BUILD_SOURCES          "${re_sources_cpp}" "${re-common_BUILD_SOURCES}"
+    NATIVE_BUILD_SOURCES   "${re-logging_SOURCES}" "${re-common_NATIVE_BUILD_SOURCES}"
+    RENDER_2D_SOURCES      "${re_sources_2d}"
+    INCLUDE_DIRECTORIES    "${re-logging_INCLUDE_DIRS}" "${re-common_INCLUDE_DIRECTORIES}" # plugin uses loguru
+    #   COMPILE_OPTIONS        -Wall
+    #   NATIVE_COMPILE_OPTIONS -Wall                     # Ok for macOS, try -W4 instead for Windows/Clang
+    JBOX_COMPILE_OPTIONS   -Wall
+    ENABLE_DEBUG_LOGGING                             # turn on JBOX_TRACE and loguru
+
     # Testing
-    TEST_CASE_SOURCES        "${re_test_cpp}"     # the source files containing the test cases
-    TEST_INCLUDE_DIRECTORIES "${RE_CPP_SRC_DIR}"  # tests can include plugin classes
-    TEST_LINK_LIBS           "native-test-lib" "re-mock"   # tests can link plugin classes
+    TEST_CASE_SOURCES        "${re_test_cpp}"        # the source files containing the test cases
+    TEST_INCLUDE_DIRECTORIES "${RE_CPP_SRC_DIR}"     # tests include plugin classes
+    TEST_LINK_LIBS           "native-test-lib" "${re-mock_LIBRARY_NAME}"  # tests link with plugin classes and re-mock
 )

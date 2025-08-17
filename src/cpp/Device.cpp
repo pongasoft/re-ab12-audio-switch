@@ -1,24 +1,15 @@
 #include "Device.h"
 
-#ifndef  __phdsp__
-#include <iostream>
-#endif // !__phdsp__
-
 Device::Device(int iSampleRate): CommonDevice(), fSampleRate{iSampleRate}, fFirstBatch(true)
 {
-  JBOX_TRACE("Device()");
-
-#ifndef  __phdsp__
-  JBOX_TRACE("Local 45 XCode Mode!!!");
-#endif // !__phdsp__
-
+  DLOG_F(INFO, "Device(%d)", iSampleRate);
   fCurrentDeviceState.fMotherboard.registerForUpdate(fJBoxPropertyManager);
 }
 
 Device::~Device()
 {
   // nothing to do
-  JBOX_TRACE("~Device()");
+  DLOG_F(INFO, "~Device()");
 }
 
 void Device::renderBatch(TJBox_PropertyDiff const iPropertyDiffs[], TJBox_UInt32 iDiffCount)
@@ -63,9 +54,6 @@ bool Device::doRenderBatch(bool propertyStateChange)
       fCurrentDeviceState.fMotherboard.fPropSoften.getValue() && // is soften turned on?
       fCurrentDeviceState.haveInputsChanged(fPreviousDeviceState); // have inputs actually changed?
 
-  if(soften)
-    JBOX_TRACE("softening");
-
   StereoAudioBuffer buf;
 
   StereoAudioBuffer *audioBuffer = soften ?
@@ -88,7 +76,7 @@ bool Device::doRenderBatch(bool propertyStateChange)
 
 void Device::doInitDevice(TJBox_PropertyDiff const iPropertyDiffs[], TJBox_UInt32 iDiffCount)
 {
-  JBOX_TRACE("doInitDevice()");
+  DLOG_F(INFO, "doInitDevice()");
 
   // initialize properties
   fJBoxPropertyManager.initProperties();

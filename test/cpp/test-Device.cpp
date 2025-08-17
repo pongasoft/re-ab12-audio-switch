@@ -25,7 +25,7 @@ using namespace re::mock;
 
 auto newAB12SwitchTester()
 {
-  auto c = DeviceConfig<Device>::fromJBoxExport(RE_CMAKE_MOTHERBOARD_DEF_LUA, RE_CMAKE_REALTIME_CONTROLLER_LUA);
+  auto c = DeviceConfig<Device>::fromJBoxExport(RE_CMAKE_PROJECT_DIR);
   return HelperTester<Device>(c);
 }
 
@@ -36,5 +36,5 @@ TEST(Device, SampleRate)
 
   ASSERT_EQ(44100, tester.device()->getSampleRate());
 
-  tester.nextFrame();
+  tester.nextBatch();
 }
