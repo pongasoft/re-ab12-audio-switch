@@ -1,3 +1,6 @@
+> [!Warning]
+> This project is now hosted on [Codeberg](https://codeberg.org/pongasoft/re-ab12-audio-in-switch).
+
 A/B 12 Audio Switch (Rack extension)
 ====================================
 
